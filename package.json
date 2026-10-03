@@ -1,13 +1,12 @@
 {
-  "name": "nodejs-demo-app",
+  "name": "devops-task2-jenkins-cicd",
   "version": "1.0.0",
-  "description": "Node.js application with GitHub Actions CI/CD",
+  "description": "Simple Jenkins CI/CD pipeline using Docker",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "node -e \"console.log('Tests passed')\""
+    "test": "node --check app.js"
   },
-  "dependencies": {
-    "express": "^5.1.0"
-  }
+  "author": "Shivam Singh Negi",
+  "license": "ISC"
 }

@@ -1,17 +1,24 @@
-const express = require("express");
-const app = express();
+const http = require('http');
+
 const PORT = process.env.PORT || 3000;
- 
-app.get("/", (req, res) => {
-    res.send("Hello! Node.js CI/CD Pipeline is working!");
+
+const server = http.createServer((req, res) => {
+    if (req.url === '/health') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+            status: 'healthy',
+            message: 'Application is running'
+        }));
+    } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(`
+            <h1>Welcome to Jenkins CI/CD Pipeline!</h1>
+            <p>Application deployed successfully using Docker.</p>
+            <p>DevOps Internship Task 2</p>
+        `);
+    }
 });
 
-app.get("/health", (req, res) => {
-    res.status(200).json({ status: "healthy" });
-});
-
-app.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
 });
-
-module.exports = app;
